@@ -1,6 +1,5 @@
 module.exports = {
-    base: '/',
-    title: '金光布袋戏',
+    title: 'GO SKY',
     description: ' ',
     themeConfig: {
         search: false
