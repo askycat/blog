@@ -10,13 +10,13 @@ module.exports = {
       },
       {
         text: 'NET CORE',
-        link: '/NETCORE/',
+        link: '/netcore/',
       },
       {
         text: 'VUE',
         items: [
-          { text: 'VuePress', link: '/VUE/VuePress/' },
-          { text: 'Vuetify', link: '/VUE/Vuetify/' },
+          { text: 'VuePress', link: '/vue/vuepress/' },
+          { text: 'Vuetify', link: '/vue/vuetify/' },
         ]
       }
     ]
