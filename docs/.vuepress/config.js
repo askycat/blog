@@ -9,7 +9,7 @@ module.exports = {
         link: '/vue/vuepress/',
       },
       {
-        text: '.NET CORE',
+        text: 'NET CORE',
         link: '/NETCORE/',
       },
       {
