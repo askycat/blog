@@ -1,6 +1,6 @@
 module.exports = {
   title: '筆記',
-  description: '瞭解筆記的創建並維護',
+  description: '筆記的創建並維護',
   serviceWorker: true,
   themeConfig: {
     nav: [
