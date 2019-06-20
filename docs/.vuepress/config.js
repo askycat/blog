@@ -1,7 +1,7 @@
 module.exports = {
   title: '筆記',
   description: '筆記的創建並維護',
-  serviceWorker: true,
+  serviceWorker: false,
   themeConfig: {
     sidebar: 'auto',
     nav: [

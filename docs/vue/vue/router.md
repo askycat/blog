@@ -4,7 +4,6 @@ metaTitle: Vue
 ---
 
 ## IIS中History模式配置
-
 **a.下载[UrlWrite](https://www.iis.net/downloads/microsoft/url-rewrite)**
 
 **b.网站根目录新建web.config**
