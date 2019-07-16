@@ -23,11 +23,24 @@ module.exports = {
       }
     ],
     sidebar:{
+      '/netcore/':getNetCoreSidebar(),
       '/vue/vue/':getVueSidebar(),
       '/vue/vuepress':getVuepressSidebar(),
       '/vue/vuetify':getVuetifySidebar()
     }
   }
+}
+
+function getNetCoreSidebar () {
+  return [  
+    {
+      title: "Authentication",
+      collapsable: true,
+      children: [
+        '权限'
+      ]
+    }
+  ]
 }
 
 function getVueSidebar () {
