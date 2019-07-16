@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CookieAuthentication | 筆記</title>
+    <meta name="description" content="筆記的創建並維護">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.ec6e3c7c.css" as="style"><link rel="preload" href="/assets/js/app.d51dc4ee.js" as="script"><link rel="preload" href="/assets/js/5.43fbe4b1.js" as="script"><link rel="prefetch" href="/assets/js/10.16bbc8eb.js"><link rel="prefetch" href="/assets/js/11.28002d60.js"><link rel="prefetch" href="/assets/js/2.399e6109.js"><link rel="prefetch" href="/assets/js/3.cb818537.js"><link rel="prefetch" href="/assets/js/4.5dd4b657.js"><link rel="prefetch" href="/assets/js/6.3c2aa589.js"><link rel="prefetch" href="/assets/js/7.b56bc5b3.js"><link rel="prefetch" href="/assets/js/8.49956cbc.js"><link rel="prefetch" href="/assets/js/9.96b8734c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ec6e3c7c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">筆記</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue/vuepress/" class="nav-link">START</a></div><div class="nav-item"><a href="/netcore/" class="nav-link router-link-active">NET CORE</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">VUE</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/vue/" class="nav-link">Vue</a></li><li class="dropdown-item"><!----> <a href="/vue/vuepress/" class="nav-link">VuePress</a></li><li class="dropdown-item"><!----> <a href="/vue/vuetify/" class="nav-link">Vuetify</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue/vuepress/" class="nav-link">START</a></div><div class="nav-item"><a href="/netcore/" class="nav-link router-link-active">NET CORE</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">VUE</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/vue/" class="nav-link">Vue</a></li><li class="dropdown-item"><!----> <a href="/vue/vuepress/" class="nav-link">VuePress</a></li><li class="dropdown-item"><!----> <a href="/vue/vuetify/" class="nav-link">Vuetify</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first collapsable"><p class="sidebar-heading open"><span>Authentication</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/netcore/权限.html" class="active sidebar-link">CookieAuthentication</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/netcore/权限.html#跨域问题" class="sidebar-link">跨域问题</a></li></ul></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h2 id="跨域问题"><a href="#跨域问题" aria-hidden="true" class="header-anchor">#</a> 跨域问题</h2> <p><strong>技术栈:VUE+AXIOS+ASP.NET CORE MVC 2.2</strong></p> <p><strong>一、axios.js配置</strong></p> <div class="language-js extra-class"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br></div><pre class="language-js"><code><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+
+<span class="token comment">//全局配置</span>
+<span class="token comment">//withCredentials可以让浏览器在请求不同域名时进行cookie的写入和携带</span>
+axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>withCredentials<span class="token operator">=</span><span class="token boolean">true</span>
+
+<span class="token comment">//request请求拦截</span>
+
+
+<span class="token comment">//response响应拦截</span>
+
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> axios
+</code></pre></div><p><strong>二、后端配置</strong></p> <p><em><strong>2.2版本：</strong></em></p> <div class="language-csharp extra-class"><div class="highlight-lines"><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-csharp"><code><span class="token comment">// This method gets called by the runtime. Use this method to add services to the container.</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">ConfigureServices</span><span class="token punctuation">(</span><span class="token class-name">IServiceCollection</span> services<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            services<span class="token punctuation">.</span><span class="token function">AddCors</span><span class="token punctuation">(</span>options <span class="token operator">=&gt;</span>
+            <span class="token punctuation">{</span>
+                options<span class="token punctuation">.</span><span class="token function">AddPolicy</span><span class="token punctuation">(</span><span class="token string">&quot;CorsPolicy&quot;</span><span class="token punctuation">,</span> policy <span class="token operator">=&gt;</span>
+                <span class="token punctuation">{</span>
+                    policy<span class="token punctuation">.</span><span class="token function">WithOrigins</span><span class="token punctuation">(</span><span class="token string">&quot;http://localhost:8080&quot;</span><span class="token punctuation">)</span>
+                          <span class="token punctuation">.</span><span class="token function">AllowAnyHeader</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                          <span class="token punctuation">.</span><span class="token function">AllowAnyMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                          <span class="token comment">//.AllowAnyOrigin()</span>
+                          <span class="token punctuation">.</span><span class="token function">AllowCredentials</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            services<span class="token punctuation">.</span><span class="token function">AddAuthentication</span><span class="token punctuation">(</span>CookieAuthenticationDefaults<span class="token punctuation">.</span>AuthenticationScheme<span class="token punctuation">)</span>
+                   <span class="token punctuation">.</span><span class="token function">AddCookie</span><span class="token punctuation">(</span>options <span class="token operator">=&gt;</span>
+                   <span class="token punctuation">{</span>
+                       options<span class="token punctuation">.</span>LoginPath <span class="token operator">=</span> <span class="token string">&quot;/Account/login&quot;</span><span class="token punctuation">;</span>
+                       options<span class="token punctuation">.</span>LogoutPath <span class="token operator">=</span> <span class="token string">&quot;/Account/Logout&quot;</span><span class="token punctuation">;</span>
+                       options<span class="token punctuation">.</span>AccessDeniedPath <span class="token operator">=</span> <span class="token string">&quot;/Account/NoRight&quot;</span><span class="token punctuation">;</span>
+                       <span class="token comment">//主要此行代码同源策略模式</span>
+                       options<span class="token punctuation">.</span>Cookie<span class="token punctuation">.</span>SameSite <span class="token operator">=</span> SameSiteMode<span class="token punctuation">.</span>None<span class="token punctuation">;</span>
+                   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            services<span class="token punctuation">.</span><span class="token function">AddMvc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span><span class="token class-name">IApplicationBuilder</span> app<span class="token punctuation">,</span> <span class="token class-name">IHostingEnvironment</span> env<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">IsDevelopment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                app<span class="token punctuation">.</span><span class="token function">UseDeveloperExceptionPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span>
+            <span class="token punctuation">{</span>
+                app<span class="token punctuation">.</span><span class="token function">UseExceptionHandler</span><span class="token punctuation">(</span><span class="token string">&quot;/Home/Error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.</span>
+                app<span class="token punctuation">.</span><span class="token function">UseHsts</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            app<span class="token punctuation">.</span><span class="token function">UseCors</span><span class="token punctuation">(</span><span class="token string">&quot;CorsPolicy&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            app<span class="token punctuation">.</span><span class="token function">UseAuthentication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//app.UseHttpsRedirection();</span>
+            app<span class="token punctuation">.</span><span class="token function">UseStaticFiles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//app.UseCookiePolicy();</span>
+
+            app<span class="token punctuation">.</span><span class="token function">UseMvc</span><span class="token punctuation">(</span>routes <span class="token operator">=&gt;</span>
+            <span class="token punctuation">{</span>
+                routes<span class="token punctuation">.</span><span class="token function">MapRoute</span><span class="token punctuation">(</span>
+                    name<span class="token punctuation">:</span> <span class="token string">&quot;default&quot;</span><span class="token punctuation">,</span>
+                    template<span class="token punctuation">:</span> <span class="token string">&quot;{controller=Home}/{action=Index}/{id?}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre></div><p><em><strong>重点:options.Cookie.SameSite = SameSiteMode.None;</strong></em> <em><strong>不加的话response中的set-cookies如下,会照成浏览器写不了cookie</strong></em></p> <div class="language- extra-class"><pre class="language-text"><code>.AspNetCore.Cookies=CfDJ8JMnGsfJXpBMhyp-7p4_e6o5hBUgvFeuKceUfGB_t9fzLdxAMKduJKHhU; path=/; secure; samesite=lax; httponly
+</code></pre></div><p><em><strong>1.1版本：</strong></em></p> <div class="language-csharp extra-class"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br></div><pre class="language-csharp"><code> <span class="token comment">// This method gets called by the runtime. Use this method to add services to the container.</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">ConfigureServices</span><span class="token punctuation">(</span><span class="token class-name">IServiceCollection</span> services<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+      <span class="token comment">// 跨域请求设置 </span>
+      <span class="token keyword">var</span> urls <span class="token operator">=</span> <span class="token string">&quot;http://localhost:8080/&quot;</span><span class="token punctuation">;</span> <span class="token comment">// </span>
+      services<span class="token punctuation">.</span><span class="token function">AddCors</span><span class="token punctuation">(</span>options <span class="token operator">=&gt;</span>
+      options<span class="token punctuation">.</span><span class="token function">AddPolicy</span><span class="token punctuation">(</span><span class="token string">&quot;CorsPolicy&quot;</span><span class="token punctuation">,</span>
+          builder <span class="token operator">=&gt;</span> builder<span class="token punctuation">.</span><span class="token function">WithOrigins</span><span class="token punctuation">(</span>urls<span class="token punctuation">)</span>
+                            <span class="token punctuation">.</span><span class="token function">AllowAnyMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                            <span class="token punctuation">.</span><span class="token function">AllowAnyHeader</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                            <span class="token punctuation">.</span><span class="token function">AllowAnyOrigin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                            <span class="token punctuation">.</span><span class="token function">AllowCredentials</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                      <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// mvc设置</span>
+      services<span class="token punctuation">.</span><span class="token function">AddMvc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 身份验证</span>
+      services<span class="token punctuation">.</span><span class="token function">AddAuthorization</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Configure</span><span class="token punctuation">(</span><span class="token class-name">IApplicationBuilder</span> app<span class="token punctuation">,</span> <span class="token class-name">IHostingEnvironment</span> env<span class="token punctuation">,</span> <span class="token class-name">ILoggerFactory</span> loggerFactory<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            loggerFactory<span class="token punctuation">.</span><span class="token function">AddConsole</span><span class="token punctuation">(</span>Configuration<span class="token punctuation">.</span><span class="token function">GetSection</span><span class="token punctuation">(</span><span class="token string">&quot;Logging&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            loggerFactory<span class="token punctuation">.</span><span class="token function">AddDebug</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">IsDevelopment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                app<span class="token punctuation">.</span><span class="token function">UseBrowserLink</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                app<span class="token punctuation">.</span><span class="token function">UseDeveloperExceptionPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span>
+            <span class="token punctuation">{</span>
+                app<span class="token punctuation">.</span><span class="token function">UseExceptionHandler</span><span class="token punctuation">(</span><span class="token string">&quot;/Home/Error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            app<span class="token punctuation">.</span><span class="token function">UseStaticFiles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 身份验证</span>
+            app<span class="token punctuation">.</span><span class="token function">UseCookieAuthentication</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">CookieAuthenticationOptions</span>
+            <span class="token punctuation">{</span>
+                AuthenticationScheme <span class="token operator">=</span> <span class="token string">&quot;Cookie&quot;</span><span class="token punctuation">,</span>
+                LoginPath <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PathString</span><span class="token punctuation">(</span><span class="token string">&quot;/Account/Login&quot;</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            app<span class="token punctuation">.</span><span class="token function">UseMvc</span><span class="token punctuation">(</span>routes <span class="token operator">=&gt;</span>
+            <span class="token punctuation">{</span>
+                routes<span class="token punctuation">.</span><span class="token function">MapRoute</span><span class="token punctuation">(</span>
+                    name<span class="token punctuation">:</span> <span class="token string">&quot;default&quot;</span><span class="token punctuation">,</span>
+                    template<span class="token punctuation">:</span> <span class="token string">&quot;{controller=Home}/{action=Index}/{id?}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre></div><p><strong>通过以上配置生成response中的set-cookies如下</strong></p> <div class="language- extra-class"><pre class="language-text"><code>.AspNetCore.Cookie=CfDJ8JMnGsfJXpBMhyp-qKWbjsno9SFiUmrlVaigeLbzHCtmgVYWxp7-5GLokE; path=/; httponly
+</code></pre></div></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.d51dc4ee.js" defer></script><script src="/assets/js/5.43fbe4b1.js" defer></script>
+  </body>
+</html>
