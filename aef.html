@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="web3.js"></script>
+</head>
+<body>
+    <button class="enableEthereumButton">Enable Ethereum</button>
+<br/>
+    totalStaked:<span id="totalStaked"></span>
+    <br/>
+    dividendsPool7:<span id="dividendsPool7"></span>
+	<br/>
+    dividendsPool15:<span id="dividendsPool15"></span>
+	<br/>
+    dividendsPool30:<span id="dividendsPool30"></span>
+    <br/>
+    stake7:<span id="stake7"></span>
+	<br/>
+    stake15:<span id="stake15"></span>
+	<br/>
+    stake30:<span id="stake30"></span>
+	<br/>
+    dividends:<span id="dividends"></span>
+    balance:<span id="balance"></span>
+	<br/>
+    期限：
+    <select id="dayType">
+        <option value="7">7day</option>
+        <option value="15">15day</option>
+        <option value="30">30day</option>
+    </select>
+	<br/>
+     <input type="text" id="stakeAmount" ></input>
+    <button onclick="stake()">质押</button>
+<br/>
+    <input type="text" id="unStakeAmount"></input>
+    <button onclick="unstake()">赎回</button>
+<br/>
+
+    <button onclick="dividend()">结算</button>
+    <button onclick="collect()">领取</button>
+</body>
+<script>
+
+<!-- const ethereumButton = document.querySelector('.enableEthereumButton'); -->
+
+<!-- ethereumButton.addEventListener('click', () => { -->
+  <!-- //Will Start the metamask extension -->
+  <!-- ethereum.request({ method: 'eth_requestAccounts' }); -->
+<!-- }); -->
+ 
+var contractAddress = '0x990E867D51FCD1F1658AaC493A6C99A8f94ED9A1';
+var BDAOAbi =[{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"Burn","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":false,"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"Collect","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":false,"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"Dividend","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":false,"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"Stake","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"Tax","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":false,"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"Unstake","type":"event"},{"constant":true,"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"SHARE_DIVIDENDS","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"_user","type":"address"},{"internalType":"address","name":"_spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"_spender","type":"address"},{"internalType":"uint256","name":"_tokens","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address[]","name":"_receivers","type":"address[]"},{"internalType":"uint256[]","name":"_amounts","type":"uint256[]"}],"name":"bulkTransfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"_share","type":"uint256"},{"internalType":"uint256","name":"dayType","type":"uint256"}],"name":"changeShare","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"collect","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"_user","type":"address"}],"name":"collectTimeOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"dividend","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"_user","type":"address"}],"name":"dividendsOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"_user","type":"address"}],"name":"dividendsOfInfo","outputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"_tokens","type":"uint256"},{"internalType":"uint256","name":"dayType","type":"uint256"}],"name":"stake","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"_user","type":"address"},{"internalType":"uint256","name":"dayType","type":"uint256"}],"name":"stakedOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalStaked","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"_to","type":"address"},{"internalType":"uint256","name":"_tokens","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"_from","type":"address"},{"internalType":"address","name":"_to","type":"address"},{"internalType":"uint256","name":"_tokens","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"_tokens","type":"uint256"},{"internalType":"uint256","name":"dayType","type":"uint256"}],"name":"unstake","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"users","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}]
+window.onload = async () => {
+    var web3Provider;
+    if (window.ethereum) {
+        web3Provider = window.ethereum;
+        try {
+            await window.ethereum.enable();
+        } catch (error) {
+            console.error("User denied account access")
+        }
+    } else if (window.web3) {
+        web3Provider = window.web3.currentProvider;
+    } else {
+        web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
+    }
+    web3 = new Web3(web3Provider);
+    account = await web3.eth.getAccounts();
+    BDAO = new web3.eth.Contract(BDAOAbi, contractAddress);
+
+    var balance = await BDAO.methods.balanceOf(account[0]).call()
+
+    var totalStaked = await BDAO.methods.totalStaked().call()
+
+    var totalSupply = await BDAO.methods.totalSupply().call()
+    var dividendsPool = await BDAO.methods.dividendsOfInfo(account[0]).call()
+    var dividends = await BDAO.methods.dividendsOf(account[0]).call()
+    var stake7 = await BDAO.methods.stakedOf(account[0],7).call()
+    var stake15 = await BDAO.methods.stakedOf(account[0],15).call()
+    var stake30 = await BDAO.methods.stakedOf(account[0],30).call()
+
+    document.querySelector("#balance").innerText=balance;
+    document.querySelector("#totalStaked").innerText=totalStaked;
+    document.querySelector("#dividendsPool7").innerText=dividendsPool[0];
+    document.querySelector("#dividendsPool15").innerText=dividendsPool[1];
+    document.querySelector("#dividendsPool30").innerText=dividendsPool[2];
+    document.querySelector("#dividends").innerText=dividends;
+    document.querySelector("#stake7").innerText=stake7;
+    document.querySelector("#stake15").innerText=stake15;
+    document.querySelector("#stake30").innerText=stake30;
+}
+
+function stake (){
+    debugger
+        var stakeAmount = document.querySelector('#stakeAmount').value;
+        var dayType = document.querySelector('#dayType').value;
+        BDAO.methods.stake(stakeAmount,dayType).send({from: account[0]});
+    }
+    function unstake (){
+        var unStakeAmount = document.querySelector('#unStakeAmount').value;
+        var dayType = document.querySelector('#dayType').value;
+        BDAO.methods.unstake(new BigNumber(unStakeAmount).times(1e18),new BigNumber(dayType).times(1e18)).send({from: account[0]});
+    }
+    function collect (){
+        BDAO.methods.collect().send({from: account[0]});
+    }
+    function dividend (){
+        BDAO.methods.dividend().send({from: account[0]});
+    }
+ 
+ 
+</script>
