@@ -103,7 +103,7 @@ function stake (){
     function unstake (){
         var unStakeAmount = document.querySelector('#unStakeAmount').value;
         var dayType = document.querySelector('#dayType').value;
-        BDAO.methods.unstake(new BigNumber(unStakeAmount).times(1e18),new BigNumber(dayType).times(1e18)).send({from: account[0]});
+        BDAO.methods.unstake(unStakeAmount,dayType).send({from: account[0]});
     }
     function collect (){
         BDAO.methods.collect().send({from: account[0]});
