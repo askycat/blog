@@ -10,7 +10,9 @@
     <button class="enableEthereumButton">Enable Ethereum</button>
 <br/>
     总质押:<span id="totalStaked"></span>
+	 <br/>
     销毁:<span id="totalBurn"></span>
+	 <br/>
     研发:<span id="totalDev"></span>
     <br/>
     7天池红利:<span id="dividendsPool7"></span>
@@ -80,7 +82,7 @@ window.onload = async () => {
     var totalBurn = await BDAO.methods.totalBurn().call()
     var totalDev=await BDAO.methods.totalDev().call()
     var totalSupply = await BDAO.methods.totalSupply().call()
-    var dividendsPool = await BDAO.methods.dividendsOfInfo(account[0]).call()
+    var dividendsPool = await BDAO.methods.dividendsOfPool(account[0]).call()
     var dividends = await BDAO.methods.dividendsOf(account[0]).call()
     var stakePool= await BDAO.methods.stakedOfPool(account[0],7).call()
 
