@@ -88,6 +88,8 @@ window.onload = async () => {
     var balance = await BDAO.methods.balanceOf(account[0]).call()
 
     var totalStaked = await BDAO.methods.totalStaked().call()
+    var totalSupply = await BDAO.methods.totalSupply().call()
+    
     var totalBurn = await BDAO.methods.totalBurn().call()
     var totalDev=await BDAO.methods.totalDev().call()
     var totalSupply = await BDAO.methods.totalSupply().call()
@@ -98,6 +100,7 @@ window.onload = async () => {
     var stake15= await BDAO.methods.stakedOf(account[0],15).call()
     var stake30= await BDAO.methods.stakedOf(account[0],30).call()
     
+    document.querySelector("#totalSupply").innerText=(totalSupply/ 1e18).toFixed(4);
     document.querySelector("#balance").innerText=(balance/ 1e18).toFixed(4);
     document.querySelector("#totalBurn").innerText=(totalBurn/ 1e18).toFixed(4);
     document.querySelector("#totalDev").innerText=(totalDev/ 1e18).toFixed(4);
