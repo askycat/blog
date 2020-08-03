@@ -9,12 +9,20 @@
 <body>
     <button class="enableEthereumButton">Enable Ethereum</button>
 <br/>
-    总质押:<span id="totalStaked"></span>
-	 <br/>
+    总量:<span id="totalSupply"></span>
+	 <br/>	
     销毁:<span id="totalBurn"></span>
 	 <br/>
     研发:<span id="totalDev"></span>
     <br/>
+    总质押:<span id="totalStaked"></span>
+    <br/>
+    7天池总质押:<span id="poolstake7"></span>
+	<br/>
+    15天池质押:<span id="poolstake15"></span>
+	<br/>
+    30天池质押:<span id="poolstake30"></span>
+	<br/>
     7天池红利:<span id="dividendsPool7"></span>
 	<br/>
     15天池红利:<span id="dividendsPool15"></span>
@@ -85,7 +93,10 @@ window.onload = async () => {
     var dividendsPool = await BDAO.methods.dividendsOfPool(account[0]).call()
     var dividends = await BDAO.methods.dividendsOf(account[0]).call()
     var stakePool= await BDAO.methods.stakedOfPool().call()
-
+    var stake7= await BDAO.methods.stakedOf(account[0],7).call()
+    var stake15= await BDAO.methods.stakedOf(account[0],15).call()
+    var stake30= await BDAO.methods.stakedOf(account[0],30).call()
+    
     document.querySelector("#balance").innerText=(balance/ 1e18).toFixed(4);
     document.querySelector("#totalBurn").innerText=(totalBurn/ 1e18).toFixed(4);
     document.querySelector("#totalDev").innerText=(totalDev/ 1e18).toFixed(4);
@@ -94,9 +105,12 @@ window.onload = async () => {
     document.querySelector("#dividendsPool15").innerText=(dividendsPool[1]/ 1e18).toFixed(4);
     document.querySelector("#dividendsPool30").innerText=(dividendsPool[2]/ 1e18).toFixed(4);
     document.querySelector("#dividends").innerText=(dividends/ 1e18).toFixed(4);
-    document.querySelector("#stake7").innerText=(stakePool[0]/ 1e18).toFixed(4);
-    document.querySelector("#stake15").innerText=(stakePool[1]/ 1e18).toFixed(4);
-    document.querySelector("#stake30").innerText=(stakePool[2]/ 1e18).toFixed(4);
+    document.querySelector("#poolstake7").innerText=(stakePool[0]/ 1e18).toFixed(4);
+    document.querySelector("#poolstake15").innerText=(stakePool[1]/ 1e18).toFixed(4);
+    document.querySelector("#poolstake30").innerText=(stakePool[2]/ 1e18).toFixed(4);
+    document.querySelector("#stake7").innerText=(stake7/ 1e18).toFixed(4);
+    document.querySelector("#stake15").innerText=(stake15/ 1e18).toFixed(4);
+    document.querySelector("#stake30").innerText=(stake30/ 1e18).toFixed(4);
 }
 
 function stake (){
