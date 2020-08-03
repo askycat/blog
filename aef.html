@@ -84,14 +84,14 @@ window.onload = async () => {
     var stake30 = await BDAO.methods.stakedOf(account[0],30).call()
 
     document.querySelector("#balance").innerText=(balance/ 1e18).toFixed(4);
-    document.querySelector("#totalStaked").innerText=totalStaked;
-    document.querySelector("#dividendsPool7").innerText=dividendsPool[0];
-    document.querySelector("#dividendsPool15").innerText=dividendsPool[1];
-    document.querySelector("#dividendsPool30").innerText=dividendsPool[2];
-    document.querySelector("#dividends").innerText=dividends;
-    document.querySelector("#stake7").innerText=stake7;
-    document.querySelector("#stake15").innerText=stake15;
-    document.querySelector("#stake30").innerText=stake30;
+    document.querySelector("#totalStaked").innerText=(totalStaked/ 1e18).toFixed(4);
+    document.querySelector("#dividendsPool7").innerText=(dividendsPool[0]/ 1e18).toFixed(4);
+    document.querySelector("#dividendsPool15").innerText=(dividendsPool[1]/ 1e18).toFixed(4);
+    document.querySelector("#dividendsPool30").innerText=(dividendsPool[2]/ 1e18).toFixed(4);
+    document.querySelector("#dividends").innerText=(dividends/ 1e18).toFixed(4);
+    document.querySelector("#stake7").innerText=(stake7/ 1e18).toFixed(4);
+    document.querySelector("#stake15").innerText=(stake15/ 1e18).toFixed(4);
+    document.querySelector("#stake30").innerText=(stake30/ 1e18).toFixed(4);
 }
 
 function stake (){
