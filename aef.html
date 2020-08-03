@@ -83,7 +83,7 @@ window.onload = async () => {
     var stake15 = await BDAO.methods.stakedOf(account[0],15).call()
     var stake30 = await BDAO.methods.stakedOf(account[0],30).call()
 
-    document.querySelector("#balance").innerText=balance;
+    document.querySelector("#balance").innerText=(balance/ 1e18).toFixed(4);
     document.querySelector("#totalStaked").innerText=totalStaked;
     document.querySelector("#dividendsPool7").innerText=dividendsPool[0];
     document.querySelector("#dividendsPool15").innerText=dividendsPool[1];
