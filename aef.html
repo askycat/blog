@@ -13,8 +13,6 @@
 	 <br/>	
     销毁:<span id="totalBurn"></span>
 	 <br/>
-    研发:<span id="totalDev"></span>
-    <br/>
     总质押:<span id="totalStaked"></span>
     <br/>
     7天池总质押:<span id="poolstake7"></span>
@@ -36,8 +34,6 @@
     玩家30天池质押:<span id="stake30"></span>
 	<br/>
     玩家总分红:<span id="dividends"></span>
-	<br/>
-    玩家可用余额:<span id="balance"></span>
 	<br/>
     期限：
     <select id="dayType">
@@ -85,13 +81,13 @@ window.onload = async () => {
     account = await web3.eth.getAccounts();
     BDAO = new web3.eth.Contract(BDAOAbi, contractAddress);
 
-    var balance = await BDAO.methods.balanceOf(account[0]).call()
+    //var balance = await BDAO.methods.balanceOf(account[0]).call()
 
     var totalStaked = await BDAO.methods.totalStaked().call()
     var totalSupply = await BDAO.methods.totalSupply().call()
     
     var totalBurn = await BDAO.methods.totalBurn().call()
-    var totalDev=await BDAO.methods.totalDev().call()
+    //var totalDev=await BDAO.methods.totalDev().call()
     var totalSupply = await BDAO.methods.totalSupply().call()
     var dividendsPool = await BDAO.methods.dividendsOfPool().call()
     var dividends = await BDAO.methods.dividendsOf(account[0]).call()
@@ -101,9 +97,9 @@ window.onload = async () => {
     var stake30= await BDAO.methods.stakedOf(account[0],30).call()
     
     document.querySelector("#totalSupply").innerText=(totalSupply/ 1e18).toFixed(4);
-    document.querySelector("#balance").innerText=(balance/ 1e18).toFixed(4);
+    //document.querySelector("#balance").innerText=(balance/ 1e18).toFixed(4);
     document.querySelector("#totalBurn").innerText=(totalBurn/ 1e18).toFixed(4);
-    document.querySelector("#totalDev").innerText=(totalDev/ 1e18).toFixed(4);
+    //document.querySelector("#totalDev").innerText=(totalDev/ 1e18).toFixed(4);
     document.querySelector("#totalStaked").innerText=(totalStaked/ 1e18).toFixed(4);
     document.querySelector("#dividendsPool7").innerText=(dividendsPool[0]/ 1e18).toFixed(4);
     document.querySelector("#dividendsPool15").innerText=(dividendsPool[1]/ 1e18).toFixed(4);
