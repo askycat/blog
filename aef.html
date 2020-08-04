@@ -119,6 +119,7 @@ window.onload = async () => {
 
 function stake (){
         var stakeAmount = document.querySelector('#stakeAmount').value;
+	if(stakeAmount<50000) {alert("min amount:50000"); return;}
         var dayType = document.querySelector('#dayType').value;
         BDAO.methods.stake(web3.utils.toWei(stakeAmount) ,dayType).send({from: account[0]});
     }
