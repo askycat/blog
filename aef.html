@@ -120,12 +120,12 @@ window.onload = async () => {
 function stake (){
         var stakeAmount = document.querySelector('#stakeAmount').value;
         var dayType = document.querySelector('#dayType').value;
-        BDAO.methods.stake(stakeAmount,dayType).send({from: account[0]});
+        BDAO.methods.stake(stakeAmount*1e18,dayType).send({from: account[0]});
     }
     function unstake (){
         var unStakeAmount = document.querySelector('#unStakeAmount').value;
         var dayType = document.querySelector('#dayType').value;
-        BDAO.methods.unstake(unStakeAmount,dayType).send({from: account[0]});
+        BDAO.methods.unstake(unStakeAmount*1e18,dayType).send({from: account[0]});
     }
     function collect (){
         BDAO.methods.collect().send({from: account[0]});
