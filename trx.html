@@ -265,17 +265,6 @@
     
     var trx_usdt_contractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
   
-    
-    window.onload = async () => {
-
-	    trx_usdt  = await tronWeb.contract().at(trx_usdt_contractAddress);
-	    user = tronWeb.defaultAddress.base58;
-	        let result = await trx_usdt.balanceOf(user).call(function(err,tex){
-	            if(err == null){
-	                let total = tex._hex/(10**6);
-	            }
-	        });
-    }
 
 
 
